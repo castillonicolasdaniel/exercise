@@ -7,6 +7,7 @@ import SearchBar from './SearchBar';
 
 const SearchPage = (props) => {
 	const [searchResults, setSearchResults] = useState([]);
+	const [isLoading, setIsLoading] = useState(false);
 
 	const location = useLocation();
 	const {
@@ -14,23 +15,35 @@ const SearchPage = (props) => {
 	} = queryString.parse(location.search);
 
 	useEffect(() => {
-		if (searchTerms) {
-			const qQuery = queryString.stringify({
-				q: searchTerms,
-			});
+		const searchItems = async(searchValue) => {
+			if (searchValue) {
+				setIsLoading(true);
+				const qQuery = queryString.stringify({
+					q: searchValue,
+				});
+				const response = await fetch(`/api/items?${qQuery}`);
 
-			fetch(`/api/items?${qQuery}`)
-				.then(res => res.json())
-				.then(users => setSearchResults(users));
-		}
-	}, [location]);
+				if (response.ok) {
+					const {items} = await response.json();
+					
+					setSearchResults(items);
+				} else {
+					console.log('ERROR'); // TypeError: failed to fetch
+				}
+				setIsLoading(false);
+			}
+		};
+		
+		searchItems(searchTerms);
+	}, [searchTerms]);
 
+	console.log('isLoading', isLoading)
 	return (
 		<div>
 			<SearchBar searchTerms={searchTerms}/>
 			{
 				searchTerms ? (
-					<ItemsList items={searchResults} />
+					<ItemsList items={searchResults} isLoading={isLoading} />
 				) : (
 					<div>Busca entre miles de productos</div>
 				)

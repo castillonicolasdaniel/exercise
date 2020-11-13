@@ -1,16 +1,38 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const got = require('got');
+
+const {parseSearchItemsResults} = require('./utils');
+
 
 /* GET items. */
-router.get('/items', function(req, res, next) {
-	console.log("requests params" +req.params);
-	res.json([{
-		id: 1,
-		username: "samsepi0l"
-	}, {
-		id: 2,
-		username: "D0loresH4ze"
-	}]);
+router.get('/items', async(req, res, next) => {
+	const {
+		query: {
+			q: searchQuery,
+		},
+	} = req;
+
+	if (searchQuery) {
+	    try {
+			const response = await got(
+				'https://api.mercadolibre.com/sites/MLA/search',
+				{
+					searchParams: {
+						q: searchQuery,
+					},
+					responseType: 'json',
+				},
+			);
+			const parsedItems = parseSearchItemsResults(response.body.results);
+
+			res.json({
+				items: parsedItems,
+			});
+		} catch (error) {
+			res.status(500).send('Something went wrong');
+		}
+	}
 });
 
 module.exports = router;
