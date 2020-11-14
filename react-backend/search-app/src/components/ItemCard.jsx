@@ -13,7 +13,6 @@ const ItemCard = (item) => {
 		title,
 		price: {
 			amount,
-			currency,
 		},
 		picture,
 		freeShipping,
@@ -27,9 +26,7 @@ const ItemCard = (item) => {
 		<div className="item-card">
 			<div>
 				<img
-					className="item-image"
-					width="160"
-					height="160"
+					className="item-thumbnail"
 					src={picture}
 					alt={title}
 					onClick={_handleItemClick}

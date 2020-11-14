@@ -7,9 +7,11 @@
 	padding-bottom: 5px;
 	width: 90%;
 
-	.item-image {
+	.item-thumbnail {
 		border-radius: 5px;
 		cursor: pointer;
+		height: 160px;
+		width: 160px;
 	}
 
 	.item-details {
