@@ -24,6 +24,7 @@ describe('ItemCard', () => {
 		picture: 'http://http2.mlstatic.com/D_659459-MLA32128006890_092019-O.jpg',
 		condition: 'new',
 		freeShipping: false,
+		province: 'Mendoza',
 	};
 
 	it('should render the item thumbnail', () => {
@@ -64,6 +65,13 @@ describe('ItemCard', () => {
 		/>);
 	  	
 	  	expect(queryByTestId('free-shipping')).not.toBeNull();
+	});
+
+	it('should render the item location', () => {
+	  	const { getByTestId } = render(<ItemCard item={item} />);
+	  	const itemLocation = getByTestId('item-location');
+
+	  	expect(itemLocation.textContent).toBe(item.province);
 	});
 
 	it('should redirect to the item page when the thumbnail is clicked', () => {

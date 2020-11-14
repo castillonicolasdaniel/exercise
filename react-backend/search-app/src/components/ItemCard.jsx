@@ -16,6 +16,7 @@ const ItemCard = ({item}) => {
 		},
 		picture,
 		freeShipping,
+		province,
 	} = item;
 
 	const _handleItemClick = () => {
@@ -59,6 +60,13 @@ const ItemCard = ({item}) => {
 				>
 					{title}
 				</h4>
+			</div>
+			<div className="item-location">
+				<span
+					data-testid="item-location"
+				>
+					{province}
+				</span>
 			</div>
 		</div>
 	)

@@ -72,7 +72,7 @@ describe('ItemContent', () => {
 	  	expect(itemDescription.textContent).toBe(itemInfo.description);
 	});
 
-	it('should render the item description with the expected value', () => {
+	it('should render the item condition with the expected value', () => {
 		const { getByTestId } = render(
 	  		<ItemContent
 	  			itemInfo={itemInfo}
@@ -85,7 +85,7 @@ describe('ItemContent', () => {
 	  	expect(itemCondition.textContent).toBe('Nuevo - 37 vendidos');
 	});
 
-	it('should render the item description with the expected value', () => {
+	it('should render the item title with the expected value', () => {
 		const { getByTestId } = render(
 	  		<ItemContent
 	  			itemInfo={itemInfo}
@@ -98,7 +98,7 @@ describe('ItemContent', () => {
 	  	expect(itemTitle.textContent).toBe(itemInfo.title);
 	});
 
-	it('should render the item description with the expected value', () => {
+	it('should render the item price with the expected value', () => {
 		const { getByTestId } = render(
 	  		<ItemContent
 	  			itemInfo={itemInfo}

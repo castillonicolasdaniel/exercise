@@ -11,7 +11,6 @@ const ITEM_CONDITION_MAP = {
 
 const ItemContent = ({isLoading, itemInfo = {}, onBuyClick}) => {
 	const {
-		id,
 		title,
 		picture,
 		description,
