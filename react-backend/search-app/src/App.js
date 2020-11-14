@@ -7,7 +7,7 @@ import {
 import ItemPage from './components/ItemPage';
 import NotFoundPage from './components/NotFoundPage';
 import SearchPage from './components/SearchPage';
-import './App.css';
+import './App.scss';
 
 class App extends Component {
     render() {

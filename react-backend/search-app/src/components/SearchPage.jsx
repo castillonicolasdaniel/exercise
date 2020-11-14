@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from "react-router";
 import queryString from 'query-string';
 
-import ItemsList from './ItemsList';
+import { parseItemsResults } from '../utils/transformations';
 import SearchBar from './SearchBar';
+import SearchResults from './SearchResults';
 
 const SearchPage = (props) => {
 	const [searchResults, setSearchResults] = useState([]);
@@ -26,7 +27,7 @@ const SearchPage = (props) => {
 				if (response.ok) {
 					const {items} = await response.json();
 					
-					setSearchResults(items);
+					setSearchResults(parseItemsResults(items));
 				} else {
 					console.log('ERROR'); // TypeError: failed to fetch
 				}
@@ -37,17 +38,14 @@ const SearchPage = (props) => {
 		searchItems(searchTerms);
 	}, [searchTerms]);
 
-	console.log('isLoading', isLoading)
 	return (
 		<div>
 			<SearchBar searchTerms={searchTerms}/>
-			{
-				searchTerms ? (
-					<ItemsList items={searchResults} isLoading={isLoading} />
-				) : (
-					<div>Busca entre miles de productos</div>
-				)
-			}
+			<SearchResults
+				items={searchResults}
+				isLoading={isLoading}
+				hasSearch={!!searchTerms}
+			/>
 		</div>
 	);
 }
