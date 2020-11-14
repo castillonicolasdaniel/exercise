@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from "react-router-dom";
 
 import { parsePrice } from '../utils/transformations';
 
@@ -6,15 +7,21 @@ import freeShippingImg from '../assets/free_shipping.png';
 import './ItemCard.scss';
 
 const ItemCard = (item) => {
+	const history = useHistory();
 	const {
 		id,
 		title,
 		price: {
 			amount,
+			currency,
 		},
 		picture,
 		freeShipping,
 	} = item;
+
+	const _handleItemClick = () => {
+		history.push(`/items/${id}`);
+	};
 
 	return (
 		<div className="item-card">
@@ -25,6 +32,7 @@ const ItemCard = (item) => {
 					height="160"
 					src={picture}
 					alt={title}
+					onClick={_handleItemClick}
 				/>
 			</div>
 			<div className="item-details">
@@ -42,7 +50,10 @@ const ItemCard = (item) => {
 						) : undefined
 					}
 				</div>
-				<h4 className="item-title">
+				<h4
+					className="item-title"
+					onClick={_handleItemClick}
+				>
 					{title}
 				</h4>
 			</div>

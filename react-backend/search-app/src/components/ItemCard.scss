@@ -9,6 +9,7 @@
 
 	.item-image {
 		border-radius: 5px;
+		cursor: pointer;
 	}
 
 	.item-details {
@@ -36,6 +37,7 @@
 		}
 
 		.item-title {
+			cursor: pointer;
 			float: left;
 			font-weight: 300;
 		    margin-top: 10px;

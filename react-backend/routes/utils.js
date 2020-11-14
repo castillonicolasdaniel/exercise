@@ -13,4 +13,21 @@ const parseSearchItemsResults = (searchItemsResults = []) => (
 	}))
 );
 
+const parseGetItemResult = ({info, description}) => ({
+	id: info.id,
+	title: info.title,
+	price: {
+		currency: info['currency_id'],
+		amount: info.price,
+		decimals: 0,
+	},
+	picture: info.pictures[0].url || info.thumbnail,
+	condition: info.condition,
+	'free_shipping': info.shipping['free_shipping'],
+	'sold_quantity': info['sold_quantity'],
+	description: description['plain_text'],
+
+});
+
 module.exports.parseSearchItemsResults = parseSearchItemsResults;
+module.exports.parseGetItemResult = parseGetItemResult;

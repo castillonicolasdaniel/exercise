@@ -36,11 +36,16 @@ const SearchBar = ({searchTerms}) => {
 		}
 	};
 
+	const _handleLogoClick = () => {
+		history.push('/');
+	};
+
 	return (
 		<div className="search-bar">
 			<div className="search-elements">
 				<img
 					className="search-logo"
+					onClick={_handleLogoClick}
 					src={logo}
 					alt="Logo"
 				/>
