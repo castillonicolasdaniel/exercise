@@ -45,12 +45,14 @@ const SearchBar = ({searchTerms}) => {
 			<div className="search-elements">
 				<img
 					className="search-logo"
+					data-testid="search-logo"
 					onClick={_handleLogoClick}
 					src={logo}
 					alt="Logo"
 				/>
 				<input
 					className="search-input"
+					data-testid="search-input"
 					type="text"
 					name="searchTerms"
 					placeholder="Nunca dejes de buscar"
@@ -59,6 +61,7 @@ const SearchBar = ({searchTerms}) => {
 				/>
 				<button
 					className="search-button"
+					data-testid="search-button"
 					onClick={_handleSearch}
 				>
 					<MagnifyingGlass />

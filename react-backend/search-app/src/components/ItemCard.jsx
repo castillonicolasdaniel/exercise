@@ -6,7 +6,7 @@ import { parsePrice } from '../utils/transformations';
 import freeShippingImg from '../assets/free_shipping.png';
 import './ItemCard.scss';
 
-const ItemCard = (item) => {
+const ItemCard = ({item}) => {
 	const history = useHistory();
 	const {
 		id,
@@ -27,6 +27,7 @@ const ItemCard = (item) => {
 			<div>
 				<img
 					className="item-thumbnail"
+					data-testid="item-thumbnail"
 					src={picture}
 					alt={title}
 					onClick={_handleItemClick}
@@ -34,13 +35,17 @@ const ItemCard = (item) => {
 			</div>
 			<div className="item-details">
 				<div className="item-price-line">
-					<h3 className="item-price-amount">
+					<h3
+						className="item-price"
+						data-testid="item-price"
+					>
 						{parsePrice(amount)}
 					</h3>
 					{
 						freeShipping ? (
 							<img
 								className="free-shipping-img"
+								data-testid="free-shipping"
 								src={freeShippingImg}
 								alt="Envio gratis"
 							/>
@@ -49,6 +54,7 @@ const ItemCard = (item) => {
 				</div>
 				<h4
 					className="item-title"
+					data-testid="item-title"
 					onClick={_handleItemClick}
 				>
 					{title}

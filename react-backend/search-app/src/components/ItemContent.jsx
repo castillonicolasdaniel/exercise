@@ -29,7 +29,10 @@ const ItemContent = ({isLoading, itemInfo = {}, onBuyClick}) => {
 
 	if (isLoading) {
 		content = (
-			<div className="item-loading">
+			<div
+				className="item-loading"
+				data-testid="is-loading"
+			>
 				<h3 className="item-message">
 					Cargando...
 				</h3>
@@ -41,16 +44,25 @@ const ItemContent = ({isLoading, itemInfo = {}, onBuyClick}) => {
 				<div>
 					<img
 						className="image"
+						data-testid="item-image"
 						src={picture}
 						alt={title}
 					/>
 					<div className="description">
 						<h4 className="description-title">Descripción del producto</h4>
-						<span className="description-text">{description}</span>
+						<span
+							className="description-text"
+							data-testid="item-description"
+						>
+							{description}
+						</span>
 					</div>
 				</div>
 				<div>
-					<div className="item-condition-label">
+					<div
+						className="item-condition-label"
+						data-testid="item-condition"
+					>
 						{
 							_getItemStatusabel({
 								itemSoldQuantity: soldQuantity,
@@ -58,15 +70,22 @@ const ItemContent = ({isLoading, itemInfo = {}, onBuyClick}) => {
 							})
 						}
 					</div>
-					<div className="item-title">
+					<div
+						className="item-title"
+						data-testid="item-title"
+					>
 						{title}
 					</div>
-					<div className="item-price">
+					<div
+						className="item-price"
+						data-testid="item-price"
+					>
 						{parsePrice(amount)}
 					</div>
 					<div className="item-actions">
 						<button 
 							className="buy-button"
+							data-testid="buy-button"
 							onClick={onBuyClick}
 						>
 							Comprar ahora

@@ -16,7 +16,7 @@ const NoResultsBox = ({message}) => (
 
 const ItemsList = ({items}) => items.map((item) => (
 	<Fragment key={item.id}>
-		<ItemCard {...item} />
+		<ItemCard item={item} />
 	</Fragment>
 ));
 
