@@ -10,6 +10,7 @@ const parseSearchItemsResults = (searchItemsResults = []) => (
 		picture: result.thumbnail,
 		condition: result.condition,
 		'free_shipping': result.shipping['free_shipping'],
+		province: result.address['state_name'],
 	}))
 );
 
